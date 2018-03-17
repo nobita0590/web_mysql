@@ -1,0 +1,5 @@
+package periodic
+
+func Init(){
+
+}
