@@ -22,7 +22,7 @@ type (
 		Total		uint
 		Time 		uint
 		CreatorId	uint
-		Minutes		int
+		//Minutes		int
 	}
 	DifficulConfig	struct {
 		DifficulId	uint
