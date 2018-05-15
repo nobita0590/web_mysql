@@ -33,7 +33,9 @@ func (c *CacheContent) TakeContent(path string) (content []byte) {
 		fmt.Println(path)
 		return
 	}else{
-		content,_ = ioutil.ReadFile(config.FilePath + path)
+		var err error
+		content,err = ioutil.ReadFile(config.FilePath + path)
+		fmt.Println("error:", err)
 		c.files[path] = content
 		return
 	}

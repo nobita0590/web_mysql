@@ -3,6 +3,8 @@ package models
 import (
 	"github.com/jinzhu/gorm"
 	"encoding/json"
+	"strings"
+	"strconv"
 )
 
 type(
@@ -40,6 +42,7 @@ type(
 		SubjectId  	[]uint
 		CategoryId  []uint
 		DifficultId []uint
+		IgnoreIds	string
 	}
 )
 
@@ -58,6 +61,18 @@ func (f *QuestionFilter) BindWhere(db *gorm.DB) *gorm.DB {
 	}
 	if len(f.Ids) > 0 {
 		db = db.Where("questions.id IN (?)",f.Ids)
+	}
+	if len(f.IgnoreIds) > 0 {
+		ids := strings.Split(f.IgnoreIds,",")
+		allowIds := []int{}
+		for _,id := range ids {
+			if intId,err := strconv.Atoi(id);err == nil && intId > 0 {
+				allowIds = append(allowIds,intId)
+			}
+		}
+		if len(allowIds) > 0 {
+			db = db.Where("questions.id NOT IN (?)",allowIds)
+		}
 	}
 	return db
 }

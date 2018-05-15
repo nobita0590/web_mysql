@@ -20,7 +20,7 @@ type (
 		ClassName	string		`gorm:"-" form:"-"`
 		SubjectName	string		`gorm:"-" form:"-"`
 		CreatorName	string		`gorm:"-" form:"-"`
-		QuestionsId	string		`form:"-" json:"-"`
+		QuestionsId	string		`form:"-" json:"QID"`
 		QuestsId 	[]string	`gorm:"-" form:"QuestionsId" json:"QuestionsId,omitempty"`
 		Questions 	[]Question	`gorm:"-" form:"-" json:"Questions,omitempty"`
 		Minutes		int			`gorm:"-" form:"-"`
